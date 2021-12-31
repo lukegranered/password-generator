@@ -7,7 +7,7 @@ var randomChar = function(passwordLength, allowSymbols, allowUppercase, allowLow
   if (allowUppercase){
     var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     characters += uppercase;
-  }
+  } 
   if (allowLowercase){
     var lowercase = "abcdefghijklmnopqrstuvwxyz";
     characters += lowercase;
@@ -29,9 +29,13 @@ var randomChar = function(passwordLength, allowSymbols, allowUppercase, allowLow
 
 function generatePassword() {
   var charLength = window.prompt("Please enter a character length for your password between 8 and 128 characters.");
+    if (charLength < 8 || charLength > 128) {
+      window.confirm("Character length must be between 8 and 128");
+      return generatePassword();
+    }
   var confirmUpper = window.confirm("Would you like to include uppercase letters?");
   var confirmLower = window.confirm("Would you like to include lowercase letters?");
-  var confirmSymbols = window.confirm("Would you like to include special characters and/or numbers?")
+  var confirmSymbols = window.confirm("Would you like to include special characters and/or numbers?");
   var password = randomChar(charLength, confirmUpper, confirmLower, confirmSymbols);
   
   return password;  
