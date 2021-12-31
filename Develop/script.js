@@ -1,9 +1,25 @@
 // Assignment code here
-var randomChar = function() {
+var randomChar = function(passwordLength, allowSymbols, allowUppercase, allowLowercase) {
   var result = "";
-  var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+  /* Create characters array */
+  var characters = ""; 
+
+  if (allowUppercase){
+    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    characters += uppercase;
+  }
+  if (allowLowercase){
+    var lowercase = "abcdefghijklmnopqrstuvwxyz";
+    characters += lowercase;
+  }
+  
+  if (allowSymbols) {
+    var symbols = "0123456789!@#$%^&*";
+    characters += symbols;
+  }
+  
   var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < passwordLength; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
@@ -13,21 +29,14 @@ var randomChar = function() {
 
 function generatePassword() {
   var charLength = window.prompt("Please enter a character length for your password between 8 and 128 characters.");
-    console.log(charLength);
-
-  var confirmUpper = window.confirm("Would you like to use uppercase letters?"); 
-    if (confirmUpper) {
-      randomChar();
-    }
-
-  var confirmLower = window.confirm("Would you like to use lowercase letters?");
-    if (confirmLower) {
-
-    }
-     
+  var confirmUpper = window.confirm("Would you like to include uppercase letters?");
+  var confirmLower = window.confirm("Would you like to include lowercase letters?");
+  var confirmSymbols = window.confirm("Would you like to include special characters and/or numbers?")
+  var password = randomChar(charLength, confirmUpper, confirmLower, confirmSymbols);
+  
+  return password;  
 }
 
-console.log(randomChar);
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
   
