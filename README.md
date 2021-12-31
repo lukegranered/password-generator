@@ -21,3 +21,6 @@ THEN the password is either displayed in an alert or written to the page
 ```
 
 # https://lukegranered.github.io/password-generator/
+
+Deployed application screen shot:
+
