@@ -1,5 +1,5 @@
 // Assignment code here
-var randomChar = function(passwordLength, allowSymbols, allowUppercase, allowLowercase) {
+var randomChar = function(passwordLength, allowUppercase, allowLowercase, allowSymbols) {
   var result = "";
   /* Create characters array */
   var characters = ""; 
@@ -18,9 +18,13 @@ var randomChar = function(passwordLength, allowSymbols, allowUppercase, allowLow
     characters += symbols;
   }
   
-  var charactersLength = characters.length;
   for (var i = 0; i < passwordLength; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  if (!allowUppercase && !allowLowercase && !allowSymbols) {
+    window.confirm("You must select at least one character type!")
+    return generatePassword();
   }
   return result;
 }
